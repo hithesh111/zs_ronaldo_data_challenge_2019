@@ -1,4 +1,4 @@
-
+import numpy as np
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
@@ -21,16 +21,6 @@ cr7_data = data.iloc[:,:-5]
 cr7_data['distance_of_shot'] = cr7_data['distance_of_shot'].apply(lambda x: x if x<50 or x==float('NaN') else 50)
 cr7_data['distance_of_shot'] = cr7_data['distance_of_shot'].fillna(int(cr7_data['distance_of_shot'].mean()))
 
-cr7_data['match_event_id'] = cr7_data['match_event_id'].fillna(cr7_data['match_event_id'].mean())
-
-cr7_data['mid']=cr7_data['area_of_shot'].apply(lambda x: 1.0 if x=='Mid Ground(MG)' else 0.0)
-cr7_data['center']=cr7_data['area_of_shot'].apply(lambda x: 1.0 if x=='Center(C)' else 0.0)
-cr7_data['left_c']=cr7_data['area_of_shot'].apply(lambda x: 1.0 if x=='Left Side Center(LC)' else 0.0)
-cr7_data['right_c']=cr7_data['area_of_shot'].apply(lambda x: 1.0 if x=='Right Side Center(RC)' else 0.0)
-cr7_data['left']=cr7_data['area_of_shot'].apply(lambda x: 1.0 if x=='Left Side(L)' else 0.0)
-cr7_data['right']=cr7_data['area_of_shot'].apply(lambda x: 1.0 if x=='Right Side (RC)' else 0.0)
-
-cr7_data['goal area']=cr7_data['shot_basics'].apply(lambda x: 1.0 if x=='Goal Area' else 0)
 
 cr7_data['location_x'] = cr7_data['location_x'].fillna(cr7_data['location_x'].mean())
 cr7_data['location_y'] = cr7_data['location_y'].fillna(cr7_data['location_y'].mean())
@@ -71,4 +61,4 @@ pid=pd.Series(test_indices,name='shot_id_number')
 pred=pd.concat([pid,y_final],axis=1)
 print(pred)
 
-pred.to_csv('Ronaldo_Predictions2.csv',index=False)
+pred.to_csv('Ronaldo_Predictions1.csv',index=False)
